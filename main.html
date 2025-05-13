@@ -1,16 +1,57 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <title>Input Validation</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            display: block;
+            width: 250px;
+        }
+    </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+    <h2>Input Validation Form</h2>
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter your name">
 
+    <label for="email">Email:</label>
+    <input type="text" id="email" placeholder="Enter your email">
+
+    <label for="mobile">Mobile:</label>
+    <input type="text" id="mobile" placeholder="Enter your mobile number">
+
+    <script type="text/javascript">
+        // Patterns
+        const patterns = {
+            name: /^[A-Za-z]{3,}$/,
+            email: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
+            mobile: /^[0-9]{10}$/
+        };
+
+        // Validate function
+        function validateInput(inputElement, pattern) {
+            inputElement.addEventListener('input', function () {
+                if (pattern.test(inputElement.value)) {
+                    inputElement.style.backgroundColor = 'lightgreen';
+                } else {
+                    inputElement.style.backgroundColor = 'pink';
+                }
+            });
+        }
+
+        // Get elements
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const mobileInput = document.getElementById('mobile');
+
+        // Apply validation
+        validateInput(nameInput, patterns.name);
+        validateInput(emailInput, patterns.email);
+        validateInput(mobileInput, patterns.mobile);
+    </script>
 </body>
-
 </html>
+
